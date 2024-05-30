@@ -21,7 +21,74 @@ npm install vue-query-utils
 
 ## Usage
 
-### In a Nuxt.js Project
+### In a Nuxt.js 3 Project
+
+1. **Create a Plugin**
+
+   Create a file named `vue-query-utils.js` in the `plugins` directory of your Nuxt.js project.
+
+   ```javascript
+   // plugins/vue-query-utils.js
+    import { defineNuxtPlugin } from '#app';
+    import { convertToQueryString, parseQueryString } from 'vue-query-utils';
+
+    export default defineNuxtPlugin((nuxtApp) => {
+        nuxtApp.provide('convertToQueryString', convertToQueryString);
+        nuxtApp.provide('parseQueryString', parseQueryString);
+    });
+   ```
+
+2. **Register the Plugin**
+
+   In Nuxt 3, plugins are automatically registered if they are placed in the plugins directory with the correct naming conventions.
+   Ensure that your plugin file name ends with .js or .ts.
+
+3. **Use in Components**
+
+   Now you can use the `$convertToQueryString` and `$parseQueryString` methods in your Vue components.
+
+   ```vue
+   <template>
+     <div>
+       <p>Query String: {{ queryString }}</p>
+       <p>Parsed Object: {{ parsedObject }}</p>
+     </div>
+   </template>
+
+   <script setup>
+        import { ref, onMounted } from 'vue';
+        import { useNuxtApp } from '#app';
+
+        const params = ref({
+            hotel: 'hotel-name',
+            checkIn: '2024-10-05',
+            checkOut: '2024-10-10',
+            stayDays: 5,
+            occupancy: [
+                {
+                    adults: 1,
+                    children: 1,
+                    ages: [5]
+                }
+            ]
+        });
+
+        const queryString = ref('');
+        const parsedObject = ref({});
+
+        const { $convertToQueryString, $parseQueryString } = useNuxtApp();
+
+        onMounted(() => {
+            // Convert to query string
+            queryString.value = $convertToQueryString(params.value);
+            
+            // Parse back to object
+            parsedObject.value = $parseQueryString(queryString.value);
+        });
+    </script>
+   ```
+
+### In a Nuxt.js 2 Project
 
 1. **Create a Plugin**
 
@@ -67,10 +134,10 @@ npm install vue-query-utils
      data() {
        return {
          params: {
-           cityName: "mecca",
+           hotel: "hotel-name",
            checkIn: "2024-10-05",
            checkOut: "2024-10-10",
-           stayDays: 8,
+           stayDays: 5,
            occupancy: [
              {
                adults: 1,
@@ -120,4 +187,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-```

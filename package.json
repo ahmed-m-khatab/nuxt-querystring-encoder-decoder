@@ -1,0 +1,23 @@
+{
+  "name": "vue-query-utils",
+  "version": "1.0.1",
+  "description": "A utility for converting objects to query strings and vice versa for Nuxt.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahmed-m-khatab/nuxt-querystring-encoder-decoder.git"
+  },
+  "keywords": [
+    "vue",
+    "nuxt",
+    "plugin",
+    "query",
+    "querystring",
+    "utils"
+  ],
+  "author": "Ahmed Khatab",
+  "license": "UNLICENSED"
+}

@@ -21,6 +21,85 @@ npm install vue-query-utils
 
 ## Usage
 
+### In a Vue.js 3 Project
+
+1. **Create a Plugin**
+
+  Create a file named `vue-query-utils.js` in the `sr`c directory of your Vue project.
+
+  src/vue-query-utils.js
+
+   ```javascript
+    import { convertToQueryString, parseQueryString } from 'vue-query-utils';
+
+    export default {
+      install(app) {
+        app.config.globalProperties.$convertToQueryString = convertToQueryString;
+        app.config.globalProperties.$parseQueryString = parseQueryString;
+      }
+    };
+   ```
+
+2. **Register the Plugin**
+
+  Register the plugin in your main application file, usually main.js or main.ts.
+
+  src/main.js
+
+  ```javascript
+    import { createApp } from 'vue';
+    import App from './App.vue';
+    import vueQueryUtils from './vue-query-utils';
+
+    const app = createApp(App);
+
+    app.use(vueQueryUtils);
+
+    app.mount('#app');
+  ```
+
+3. **Use in Components**
+
+  ```vue
+    <template>
+      <div>
+        <p>Query String: {{ queryString }}</p>
+        <p>Parsed Object: {{ parsedObject }}</p>
+      </div>
+    </template>
+
+    <script>
+    export default {
+      data() {
+        return {
+          params: {
+            cityName: 'mecca',
+            checkIn: '2024-10-05',
+            checkOut: '2024-10-10',
+            stayDays: 8,
+            occupancy: [
+              {
+                adults: 1,
+                children: 1,
+                ages: [5]
+              }
+            ]
+          },
+          queryString: '',
+          parsedObject: {}
+        };
+      },
+      mounted() {
+        // Convert to query string
+        this.queryString = this.$convertToQueryString(this.params);
+        
+        // Parse back to object
+        this.parsedObject = this.$parseQueryString(this.queryString);
+      }
+    };
+    </script>
+  ```
+
 ### In a Nuxt.js 3 Project
 
 1. **Create a Plugin**

@@ -1,6 +1,6 @@
 {
   "name": "vue-query-utils",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A utility for converting objects to query strings and vice versa for Nuxt.js",
   "main": "index.js",
   "scripts": {

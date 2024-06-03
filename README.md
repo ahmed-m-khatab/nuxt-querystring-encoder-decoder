@@ -1,5 +1,7 @@
 # Vue Query Utils
 
+![Vue Query Utils](/logo.png)
+
 [![npm version](https://badge.fury.io/js/vue-query-utils.svg)](https://badge.fury.io/js/vue-query-utils)
 
 A utility for converting objects to query strings and vice versa, specifically designed for Vue.js and Nuxt.js projects.

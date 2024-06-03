@@ -1,7 +1,7 @@
 {
   "name": "vue-query-utils",
-  "version": "1.0.3",
-  "description": "A utility for converting objects to query strings and vice versa for Nuxt.js",
+  "version": "1.0.5",
+  "description": "A utility for converting objects to query strings and vice versa for Vue.js and Nuxt.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
